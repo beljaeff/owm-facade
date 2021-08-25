@@ -1,0 +1,19 @@
+{
+    "host": "0.0.0.0",
+    "port": "8080",
+    "apiVersion": "v1",
+
+    "owmApiKey": "",
+    "owmApiHost": "api.openweathermap.org",
+    "owmApiPort": "443",
+    "owmPathTemplate": "/data/2.5/%s?q=%s&appid=%s",
+    "owmApiMethod": "GET",
+
+    "useRequestsConsoleLogging": "true",
+    "useRequestsFileLogging": "true",
+    "useCommonConsoleLogging": "true",
+    "useCommonFileLogging": "true",
+    "logFolder": "",
+    "requestsLogFile": "access.log",
+    "commonLogFile": "common.log"
+}
