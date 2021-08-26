@@ -1,6 +1,6 @@
-'use strict';
+import getLogger from '../common/logging.js';
 
-const logger = require('common/logging')('service/owm-response-processor');
+const logger = getLogger('service/owm-response-processor');
 
 function mapForecast(source) {
     return {
@@ -59,7 +59,7 @@ function processResponse(map, routeId, response) {
     });
 }
 
-module.exports = {
+export default {
     processCurrent: (routeId, response) => processResponse(mapForecast, routeId, response),
     processDaily: (routeId, response) => processResponse(mapForecasts, routeId, response)
-}
+};

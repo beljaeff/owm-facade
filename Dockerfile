@@ -1,10 +1,9 @@
 FROM node:14-alpine
 
-ENV NODE_PATH=. \
+ENV DEBUG=owm-facade:*:info,owm-facade:*:error,owm-facade:*:warn \
     OWMF_HOST=0.0.0.0 \
     OWMF_PORT=8080 \
-    OWMF_LOG_FOLDER=/tmp \
-    DEBUG=owm-facade:*:info,owm-facade:*:error,owm-facade:*:warn
+    OWMF_LOG_FOLDER=/tmp
 
 WORKDIR /opt/app
 

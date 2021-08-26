@@ -1,7 +1,7 @@
-'use strict';
+import https from 'https';
+import getLogger from './logging.js';
 
-const https = require('https');
-const logger = require('common/logging')('common/https-promise-request');
+const logger = getLogger('common/https-promise-request');
 
 function badStatus(res) {
     return res.statusCode < 200 || res.statusCode >= 300;
@@ -23,7 +23,7 @@ function processBadStatus(res, body, routeId, reject) {
     reject(error);
 }
 
-function httpsPromiseRequest(routeId, options) {
+export default function httpsPromiseRequest(routeId, options) {
     return new Promise(function(resolve, reject) {
         logger.debug('Performing external service request, routeId: "%s"', routeId);
         const req = https.request(options, function(res) {
@@ -69,5 +69,3 @@ function httpsPromiseRequest(routeId, options) {
         req.end();
     });
 }
-
-module.exports = httpsPromiseRequest;

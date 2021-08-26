@@ -1,8 +1,6 @@
-'use strict';
+import openapi from '../../init.js';
 
-const openapi = require('routes/openapi/init');
-
-module.exports = openapi.component('parameters', 'City', {
+openapi.component('parameters', 'City', {
     name: 'city',
     in: 'query',
     description: 'City weather searching for',

@@ -1,8 +1,6 @@
-'use strict';
+import openapi from '../../init.js';
 
-const openapi = require('routes/openapi/init');
-
-module.exports = openapi.component('schemas', 'Forecast', {
+openapi.component('schemas', 'Forecast', {
     title: 'Forecast data',
     type: 'object',
     properties: {

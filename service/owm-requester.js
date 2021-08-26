@@ -1,8 +1,8 @@
-'use strict';
+import { readFile } from "fs/promises";
+import util from 'util';
+import httpsPromiseRequest from '../common/https-promise-request.js';
 
-const util = require('util');
-const config = require('config');
-const httpsPromiseRequest = require('common/https-promise-request');
+const config = JSON.parse((await readFile(new URL('../config.json', import.meta.url))).toString());
 
 function getOwmOptions(owmRoute, city) {
     const apiKey = process.env.OWMF_API_KEY || config.owmApiKey
@@ -18,7 +18,7 @@ function getOwmOptions(owmRoute, city) {
     };
 }
 
-module.exports = {
+export default {
     requestCurrent: (routeId, city) => httpsPromiseRequest(routeId, getOwmOptions('weather', city)),
     requestDaily: (routeId, city) => httpsPromiseRequest(routeId, getOwmOptions('forecast', city))
-}
+};

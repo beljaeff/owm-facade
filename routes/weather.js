@@ -1,12 +1,11 @@
-'use strict';
+import express from 'express';
+import { v4 as uuid } from 'uuid';
+import getLogger from '../common/logging.js';
+import openapiPaths from './openapi/paths.js';
+import owmRequester from '../service/owm-requester.js';
+import owmResponseProcessor from '../service/owm-response-processor.js';
 
-const express = require('express');
-const uuid = require('uuid');
-const logger = require('common/logging')('routes/weather');
-const openapiPaths = require('routes/openapi/paths');
-const owmRequester = require('service/owm-requester');
-const owmResponseProcessor = require('service/owm-response-processor');
-
+const logger = getLogger('routes/weather');
 const router = express.Router();
 
 router.use(function (req, res, next) {
@@ -26,7 +25,7 @@ router.get('/daily', openapiPaths.daily(), (req, res, next) => {
 });
 
 function processRoute(route, performRequest, processOwmResponse, req, res, next) {
-    const routeId = uuid.v4();
+    const routeId = uuid();
     logger.debug('Route "%s" processing initiated, routeId: "%s" assigned', route, routeId);
 
     performRequest(routeId, req.query.city)
@@ -46,4 +45,4 @@ function errorResponse(next, route, routeId, error) {
     next(error);
 }
 
-module.exports = router;
+export { router as default };

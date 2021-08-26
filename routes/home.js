@@ -1,7 +1,5 @@
-'use strict';
-
-const express = require('express');
-const appProperties = require('common/app-properties');
+import express from 'express';
+import appProperties from '../common/app-properties.js';
 
 const router = express.Router();
 
@@ -10,4 +8,4 @@ router.get('/', function(req, res) {
     res.end(appProperties.getAppInfo());
 });
 
-module.exports = router;
+export { router as default };

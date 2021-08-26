@@ -1,8 +1,6 @@
-'use strict';
+import openapi from './openapi.js';
 
-const openapi = require('routes/openapi/openapi');
-
-module.exports = {
+export default {
     current: () => openapi.path({
         summary: 'Current weather search',
         description: 'Current weather search using given city',
@@ -69,4 +67,4 @@ module.exports = {
         },
         parameters: [ { $ref: '#/components/parameters/City' } ]
     })
-}
+};

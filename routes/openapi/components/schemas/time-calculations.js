@@ -1,8 +1,6 @@
-'use strict';
+import openapi from '../../init.js';
 
-const openapi = require('routes/openapi/init');
-
-module.exports = openapi.component('schemas', 'TimeCalculations', {
+openapi.component('schemas', 'TimeCalculations', {
     title: 'Sunrise, sunset and time report calculated',
     type: 'object',
     properties: {

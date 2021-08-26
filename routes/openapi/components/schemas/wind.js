@@ -1,8 +1,6 @@
-'use strict';
+import openapi from '../../init.js';
 
-const openapi = require('routes/openapi/init');
-
-module.exports = openapi.component('schemas', 'Wind', {
+openapi.component('schemas', 'Wind', {
     title: 'Wind report',
     type: 'object',
     properties: {

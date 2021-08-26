@@ -1,8 +1,6 @@
-'use strict';
+import openapi from '../../init.js';
 
-const openapi = require('routes/openapi/init');
-
-module.exports = openapi.component('schemas', 'Pressure', {
+openapi.component('schemas', 'Pressure', {
     title: 'Pressure report',
     type: 'object',
     properties: {

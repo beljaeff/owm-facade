@@ -1,9 +1,7 @@
-'use strict';
+import openapi from '@wesleytodd/openapi';
+import appProperties from '../../common/app-properties.js';
 
-const openapi = require('@wesleytodd/openapi');
-const appProperties = require('common/app-properties');
-
-module.exports = openapi({
+export default openapi({
     openapi: '3.0.0',
     info: {
         title: appProperties.getAppName(),

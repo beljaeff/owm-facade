@@ -1,13 +1,13 @@
-'use strict';
+import express from 'express';
 
-const express = require('express');
+import appProperties from './common/app-properties.js';
+import getLogger from './common/logging.js';
+import openapi from './routes/openapi/openapi.js';
 
-const appProperties = require('common/app-properties');
-const logger = require('common/logging')('app');
-const openapi = require('routes/openapi/openapi');
+import homeRouter from './routes/home.js';
+import apiRouter from './routes/weather.js';
 
-const homeRouter = require('routes/home');
-const apiRouter = require('routes/weather');
+const logger = getLogger('app');
 
 const app = express();
 

@@ -1,8 +1,6 @@
-'use strict';
+import openapi from '../../init.js';
 
-const openapi = require('routes/openapi/init');
-
-module.exports = openapi.component('schemas', 'CommonDescription', {
+openapi.component('schemas', 'CommonDescription', {
     title: 'Summary data to show',
     type: 'object',
     properties: {

@@ -1,29 +1,31 @@
-'use strict';
+import fs from 'fs';
+import { readFile } from 'fs/promises';
+import path from 'path';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import util from 'util';
+import morgan from 'morgan';
+import debug from 'debug';
+import appProperties from './app-properties.js';
+import { getBooleanAppParam } from './functions.js';
 
-const fs = require('fs');
-const path = require('path');
-const util = require('util');
-const morgan = require('morgan');
-const debug = require('debug');
-const config = require('config');
-const appProperties = require('common/app-properties');
-const functions = require('common/functions');
+const config = JSON.parse((await readFile(new URL('../config.json', import.meta.url))).toString());
 
-const useRequestsConsoleLogging = functions.getBooleanAppParam(
+const useRequestsConsoleLogging = getBooleanAppParam(
     process.env.OWMF_USE_REQUESTS_CONSOLE_LOGGING, config.useRequestsConsoleLogging, true
 );
-const useRequestsFileLogging = functions.getBooleanAppParam(
+const useRequestsFileLogging = getBooleanAppParam(
     process.env.OWMF_USE_REQUESTS_FILE_LOGGING, config.useRequestsFileLogging, true
 );
 
-const useCommonConsoleLogging = functions.getBooleanAppParam(
+const useCommonConsoleLogging = getBooleanAppParam(
     process.env.OWMF_USE_COMMON_CONSOLE_LOGGING, config.useCommonConsoleLogging, true
 );
-const useCommonFileLogging = functions.getBooleanAppParam(
+const useCommonFileLogging = getBooleanAppParam(
     process.env.OWMF_USE_COMMON_FILE_LOGGING, config.useCommonFileLogging, true
 );
 
-const logFolder = process.env.OWMF_LOG_FOLDER || config.logFolder || __dirname;
+const logFolder = process.env.OWMF_LOG_FOLDER || config.logFolder || dirname(fileURLToPath(import.meta.url));
 
 const requestsLogFile = process.env.OWMF_REQUESTS_LOG_FILE || config.requestsLogFile || 'access.log';
 const requestsLogStream = fs.createWriteStream(path.join(logFolder, requestsLogFile), { flags: 'a' });
@@ -39,7 +41,7 @@ function fileWriter() {
 }
 
 // executes every time when requiring this module
-function logger(loggingModule = 'default') {
+export default function getLogger(loggingModule = 'default') {
 
     // executes every time when requiring this module
     function getLogDecorator(level) {
@@ -86,5 +88,3 @@ function logger(loggingModule = 'default') {
         })
     }
 }
-
-module.exports = logger;

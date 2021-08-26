@@ -1,5 +1,3 @@
-'use strict';
-
 function getBooleanValue(stringValue) {
     stringValue = String(stringValue).toLowerCase();
     if (stringValue === 'true' || stringValue === 'yes' || stringValue === 'y') {
@@ -11,12 +9,8 @@ function getBooleanValue(stringValue) {
     throw new Error(`Can't understand '${stringValue}', should be one of true|yes|y|false|no|n`);
 }
 
-function getBooleanAppParam(envValue, configValue, defaultValue = false) {
+export function getBooleanAppParam(envValue, configValue, defaultValue = false) {
     return typeof envValue    !== 'undefined' ? getBooleanValue(envValue)
          : typeof configValue !== 'undefined' ? getBooleanValue(configValue)
          : defaultValue;
-}
-
-module.exports = {
-    getBooleanAppParam: getBooleanAppParam
 }

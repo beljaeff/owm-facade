@@ -1,8 +1,6 @@
-'use strict';
+import openapi from '../../init.js';
 
-const openapi = require('routes/openapi/init');
-
-module.exports = openapi.component('schemas', 'Precipitation', {
+openapi.component('schemas', 'Precipitation', {
     title: 'Rain, snow, clouds, humidity and visibility',
     type: 'object',
     properties: {

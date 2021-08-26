@@ -1,16 +1,12 @@
-'use strict';
+import './components/parameters/city.js';
 
-const openapi = require('routes/openapi/init');
+import './components/schemas/temperature.js';
+import './components/schemas/precipitation.js';
+import './components/schemas/wind.js';
+import './components/schemas/pressure.js';
+import './components/schemas/time-calculations.js';
+import './components/schemas/common-description.js';
+import './components/schemas/forecast.js';
+import './components/schemas/error-message.js';
 
-require('routes/openapi/components/parameters/city');
-
-require('routes/openapi/components/schemas/temperature');
-require('routes/openapi/components/schemas/precipitation');
-require('routes/openapi/components/schemas/wind');
-require('routes/openapi/components/schemas/pressure');
-require('routes/openapi/components/schemas/time-calculations');
-require('routes/openapi/components/schemas/common-description');
-require('routes/openapi/components/schemas/forecast');
-require('routes/openapi/components/schemas/error-message');
-
-module.exports = openapi;
+export { default } from './init.js';
