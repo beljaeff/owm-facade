@@ -29,7 +29,7 @@ function processRoute(route, performRequest, processOwmResponse, req, res, next)
     logger.debug('Route "%s" processing initiated, routeId: "%s" assigned', route, routeId);
 
     performRequest(routeId, req.query.city)
-        .then(result => processOwmResponse(routeId, result))
+        .then(result => processOwmResponse(routeId, result.data))
         .then(result => jsonResponse(routeId, res, result))
         .catch(error => errorResponse(next, route, routeId, error));
 }

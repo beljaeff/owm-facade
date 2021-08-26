@@ -2,7 +2,12 @@
     "name": "owm-facade",
     "version": "0.0.1",
     "description": "Service retrieving weather data from openweathermap.org and providing current daily forecast via REST/JSON api",
-    "keywords": [ "api", "express", "weather", "openweathermap"],
+    "keywords": [
+        "api",
+        "express",
+        "weather",
+        "openweathermap"
+    ],
     "homepage": "https://github.com/beljaeff/owm-facade",
     "license": "GPL-2.0-only",
     "author": {
@@ -15,6 +20,7 @@
     },
     "dependencies": {
         "@wesleytodd/openapi": "^0.1.0",
+        "axios": "^0.21.1",
         "debug": "~4.3.2",
         "express": "~4.17.1",
         "morgan": "~1.10.0",

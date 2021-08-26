@@ -4,10 +4,7 @@
     "apiVersion": "v1",
 
     "owmApiKey": "",
-    "owmApiHost": "api.openweathermap.org",
-    "owmApiPort": "443",
-    "owmPathTemplate": "/data/2.5/%s?q=%s&appid=%s",
-    "owmApiMethod": "GET",
+    "owmApiUrlTemplate": "https://api.openweathermap.org/data/2.5/%s?q=%s&appid=%s",
 
     "useRequestsConsoleLogging": "true",
     "useRequestsFileLogging": "true",
