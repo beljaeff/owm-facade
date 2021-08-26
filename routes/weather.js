@@ -8,7 +8,7 @@ import owmResponseProcessor from '../service/owm-response-processor.js';
 const logger = getLogger('routes/weather');
 const router = express.Router();
 
-router.use(function (req, res, next) {
+router.use((req, res, next) => {
     if (!req.query.city) {
         logger.error('Detected weather request without city. Request: %O', req);
         throw new Error('Detected weather request without city');

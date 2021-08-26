@@ -24,17 +24,15 @@ function processBadStatus(res, body, routeId, reject) {
 }
 
 export default function httpsPromiseRequest(routeId, options) {
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
         logger.debug('Performing external service request, routeId: "%s"', routeId);
-        const req = https.request(options, function(res) {
+        const req = https.request(options, res => {
             // accumulate data
             let body = [];
-            res.on('data', function(chunk) {
-                body.push(chunk);
-            });
+            res.on('data', (chunk) => body.push(chunk));
 
             // resolve on end
-            res.on('end', function() {
+            res.on('end', () => {
                 logger.debug(
                     'Received "%s" response from external service with status code "%s", routeId: "%s"',
                     res.headers['content-type'], res.statusCode, routeId
@@ -60,7 +58,7 @@ export default function httpsPromiseRequest(routeId, options) {
         });
 
         // reject on request error
-        req.on('error', function(error) {
+        req.on('error', error => {
             logger.error('Error requesting external service, routeId: "%s"', routeId);
             reject(error);
         });

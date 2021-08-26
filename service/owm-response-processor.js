@@ -53,7 +53,7 @@ function mapForecasts(source) {
 }
 
 function processResponse(map, routeId, response) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(resolve => {
         logger.debug('Converting response from external service to common model, routeId: "%s"', routeId);
         resolve(map(response));
     });

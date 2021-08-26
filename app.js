@@ -22,11 +22,11 @@ app.use('/openapi', openapi.swaggerui);
 app.use('/', homeRouter);
 app.use(`/api/${appProperties.getApiVersion()}`, apiRouter);
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
     res.status(404).json({message: '404 not found'});
 });
 
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
     const message = err.message || 'Something goes wrong!';
     const statusCode = err.statusCode || 500;
     logger.error(err);
