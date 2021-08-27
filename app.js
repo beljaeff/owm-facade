@@ -1,4 +1,5 @@
 import express from 'express';
+import { v4 as uuid } from 'uuid';
 
 import config from './common/app-configs.js';
 import getLogger from './common/logging.js';
@@ -10,6 +11,12 @@ import apiRouter from './routes/weather.js';
 const logger = getLogger('app');
 
 const app = express();
+
+app.use((req, res, next) => {
+    req.routeId = uuid();
+    logger.debug('Registered request routeId: "%s"', req.routeId);
+    next();
+});
 
 app.use(logger.setRequestsConsoleLogging());
 app.use(logger.setRequestsFileLogging());
@@ -34,7 +41,7 @@ app.use((err, req, res, next) => {
         message = err?.response?.data?.message || message;
         logger.trace(err.response);
     }
-    logger.error(err);
+    logger.error('Error caught during route processing, routeId: "%s"', req.routeId, err);
     res.status(statusCode).json({message: message});
 });
 
