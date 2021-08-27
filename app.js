@@ -27,8 +27,13 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-    const message = err.message || 'Something goes wrong!';
-    const statusCode = err.statusCode || 500;
+    let statusCode = 500;
+    let message = err.message || 'Something goes wrong!';
+    if (err.isAxiosError) {
+        statusCode = err?.response?.data?.cod || err?.response?.status || statusCode;
+        message = err?.response?.data?.message || message;
+        logger.trace(err.response);
+    }
     logger.error(err);
     res.status(statusCode).json({message: message});
 });
