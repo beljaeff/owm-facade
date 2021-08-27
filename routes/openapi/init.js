@@ -1,20 +1,20 @@
 import openapi from '@wesleytodd/openapi';
-import appProperties from '../../common/app-properties.js';
+import config from '../../common/app-configs.js';
 
 export default openapi({
     openapi: '3.0.0',
     info: {
-        title: appProperties.getAppName(),
-        description: appProperties.getAppDescription(),
+        title: config.appName,
+        description: config.appDescription,
         license: {
             name: "GNU General Public License, version 2",
             url: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
         },
-        version: appProperties.getAppVersion(),
+        version: config.appVersion,
     },
     servers: [
         {
-            url: `http://${appProperties.getAppHost()}:${appProperties.getAppPort()}/api/${appProperties.getApiVersion()}`,
+            url: `http://${config.appHost}:${config.appPort}/api/${config.apiVersion}`,
             description: "OWM facade service"
         }
     ]

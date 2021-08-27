@@ -1,21 +1,12 @@
 import axios from 'axios';
-import { readFile } from "fs/promises";
 import util from 'util';
-
-const config = JSON.parse((await readFile(new URL('../config.json', import.meta.url))).toString());
+import config from '../common/app-configs.js';
 
 function makeRequest(routeId, owmRoute, city) {
-    const apiKey = process.env.OWMF_API_KEY || config.owmApiKey
-    if (!apiKey) {
-        throw new Error('OWM api key is not set');
-    }
+    const apiKey = config.owmApiKey
     const url = util.format(config.owmApiUrlTemplate, owmRoute, city, apiKey);
 
-    return axios.get(url, {
-        params: {
-            city: city
-        }
-    });
+    return axios.get(url, { params: { city: city } });
 }
 
 export default {

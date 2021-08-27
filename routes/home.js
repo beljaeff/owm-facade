@@ -1,11 +1,11 @@
 import express from 'express';
-import appProperties from '../common/app-properties.js';
+import config from '../common/app-configs.js';
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
     res.set('Content-Type', 'text/plain');
-    res.end(appProperties.getAppInfo());
+    res.end(config.getAppInfo());
 });
 
 export { router as default };

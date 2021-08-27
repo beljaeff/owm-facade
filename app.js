@@ -1,6 +1,6 @@
 import express from 'express';
 
-import appProperties from './common/app-properties.js';
+import config from './common/app-configs.js';
 import getLogger from './common/logging.js';
 import openapi from './routes/openapi/openapi.js';
 
@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(openapi);
 app.use('/openapi', openapi.swaggerui);
 app.use('/', homeRouter);
-app.use(`/api/${appProperties.getApiVersion()}`, apiRouter);
+app.use(`/api/${config.apiVersion}`, apiRouter);
 
 app.use((req, res, next) => {
     res.status(404).json({message: '404 not found'});
@@ -33,7 +33,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).json({message: message});
 });
 
-app.listen(appProperties.getAppPort(), appProperties.getAppHost(), () => {
-    logger.info(appProperties.getAppInfo());
-    logger.info(`Express server listening on ${appProperties.getAppHost()}:${appProperties.getAppPort()}`);
+app.listen(config.appPort, config.appHost, () => {
+    logger.info(config.getAppInfo());
+    logger.info(`Express server listening on ${config.appHost}:${config.appPort}`);
 });
