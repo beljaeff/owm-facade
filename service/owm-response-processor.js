@@ -43,13 +43,7 @@ function mapForecast(source) {
 }
 
 function mapForecasts(source) {
-    const result = [];
-    if (source.list) {
-        for (let elem of source.list) {
-            result.push(mapForecast(elem));
-        }
-    }
-    return result;
+    return Array.isArray(source.list) ? source.list.map(mapForecast) : [];
 }
 
 function processResponse(map, routeId, response) {
